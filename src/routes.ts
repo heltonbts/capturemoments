@@ -10,6 +10,10 @@ function routes(fastify: FastifyInstance) {
   fastify.post('/login', async (request, reply) => {
     return new LoginUserController().handle(request, reply);
   });
+
+  // fastify.get('user', async (request, reply) => {
+  //   return
+  // })
 }
 
 export default routes;
