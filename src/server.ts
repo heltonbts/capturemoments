@@ -1,5 +1,7 @@
 import fastify, { FastifyReply, FastifyRequest } from 'fastify';
 import db from './lib/prisma';
+import { hashSync } from 'bcrypt-ts';
+import jwt from 'jsonwebtoken';
 
 const app = fastify({
   logger: true,
@@ -39,6 +41,34 @@ const start = async () => {
           message: 'Usuário já cadastrado',
         });
       }
+
+      const hashedPassword = hashSync(password, 10);
+
+      const user = await db.user.create({
+        data: {
+          fullName,
+          email,
+          password: hashedPassword,
+        },
+      });
+
+      const acessToken = await jwt.sign(
+        { userId: user.id },
+        process.env.ACCESS_TOKEN_SECRET!,
+        {
+          expiresIn: '72h',
+        },
+      );
+
+      reply.status(200).send({
+        error: false,
+        user: {
+          fullName: user.fullName,
+          email: user.email,
+        },
+        acessToken,
+        message: 'registrado com sucesso',
+      });
     },
   );
 
