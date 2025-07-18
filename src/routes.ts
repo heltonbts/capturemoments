@@ -1,8 +1,10 @@
-import { FastifyInstance } from 'fastify';
+import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { CreateUserController } from './controller/auth/CreateUserController';
 import { LoginUserController } from './controller/auth/LoginUserController';
 import { GetUsersController } from './controller/auth/GetUsersController';
 import { authenticateToken } from './middlewares/authenticateToken';
+import { CreateRegisterMomentController } from './controller/AddRegisterMomentController';
+import { getAllRegisterController } from './controller/getAllRegisterController';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
@@ -18,6 +20,22 @@ function routes(fastify: FastifyInstance) {
     { preHandler: authenticateToken },
     async (request, reply) => {
       return new GetUsersController().handle(request, reply);
+    },
+  );
+
+  fastify.post(
+    '/add-register',
+    { preHandler: authenticateToken },
+    async (request, reply) => {
+      return new CreateRegisterMomentController().handle(request, reply);
+    },
+  );
+
+  fastify.get(
+    '/get-allmoments',
+    { preHandler: authenticateToken },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new getAllRegisterController().handle(request, reply);
     },
   );
 }
