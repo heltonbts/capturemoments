@@ -17,7 +17,7 @@ class GetUsersController {
       const response = await getUsersController.execute({
         userId: user.userId,
       });
-      reply.send(response);
+      return reply.send(response);
     } catch (error: any) {
       return reply.status(400).send({
         error: true,
