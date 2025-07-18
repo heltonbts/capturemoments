@@ -1,6 +1,8 @@
 import { FastifyInstance } from 'fastify';
 import { CreateUserController } from './controller/CreateUserController';
 import { LoginUserController } from './controller/LoginUserController';
+import { authenticateToken } from './services/GetUsersService';
+import { GetUsersController } from './controller/GetUsersController';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
@@ -11,9 +13,13 @@ function routes(fastify: FastifyInstance) {
     return new LoginUserController().handle(request, reply);
   });
 
-  // fastify.get('user', async (request, reply) => {
-  //   return
-  // })
+  fastify.get(
+    '/get-user',
+    { preHandler: authenticateToken },
+    async (request, reply) => {
+      return new GetUsersController().handle(request, reply);
+    },
+  );
 }
 
 export default routes;

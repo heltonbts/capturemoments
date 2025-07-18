@@ -1,9 +1,29 @@
-// import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { GetUserService } from '../services/GetUsersService';
 
-// class GetUserController {
-//   async handle(request: FastifyRequest, reply: FastifyReply) {
-//     const userId
-//   }
-// }
+class GetUsersController {
+  async handle(request: FastifyRequest, reply: FastifyReply) {
+    const { user } = request;
 
-// export { GetUserController };
+    if (!user) {
+      return reply.status(400).send({
+        message: 'Usuário não encontrado',
+      });
+    }
+
+    try {
+      const getUsersController = new GetUserService();
+
+      const response = await getUsersController.execute({
+        userId: user.userId,
+      });
+      reply.send(response);
+    } catch (error: any) {
+      return reply.status(400).send({
+        error: true,
+        message: error.message,
+      });
+    }
+  }
+}
+export { GetUsersController };
