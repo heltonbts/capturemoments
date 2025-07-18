@@ -1,8 +1,8 @@
 import { FastifyInstance } from 'fastify';
-import { CreateUserController } from './controller/CreateUserController';
-import { LoginUserController } from './controller/LoginUserController';
-import { authenticateToken } from './services/GetUsersService';
-import { GetUsersController } from './controller/GetUsersController';
+import { CreateUserController } from './controller/auth/CreateUserController';
+import { LoginUserController } from './controller/auth/LoginUserController';
+import { GetUsersController } from './controller/auth/GetUsersController';
+import { authenticateToken } from './services/auth/GetUsersService';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {

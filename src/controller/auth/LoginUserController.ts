@@ -1,28 +1,27 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { CreateUserService } from '../services/CreateUserService';
+import { LoginUserService } from '../../services/auth/LoginUserService';
 
-class CreateUserController {
+class LoginUserController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
-    const { fullName, email, password } = request.body as {
-      fullName: string;
+    const { email, password } = request.body as {
       email: string;
       password: string;
     };
 
-    if (!fullName || !email || !password) {
+    if (!email || !password) {
       reply.status(400).send({
         message: 'Todos os campos são obrigatórios',
       });
     }
 
     try {
-      const createUserService = new CreateUserService();
+      const loginUserService = new LoginUserService();
 
-      const user = await createUserService.execute({
+      const user = await loginUserService.execute({
         email,
-        fullName,
         password,
       });
+
       reply.send(user);
     } catch (error: any) {
       return reply.status(400).send({
@@ -33,4 +32,4 @@ class CreateUserController {
   }
 }
 
-export { CreateUserController };
+export { LoginUserController };

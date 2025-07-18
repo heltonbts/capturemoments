@@ -1,6 +1,6 @@
 import { hashSync } from 'bcrypt-ts';
-import db from '../lib/prisma';
-import jwt from 'jsonwebtoken';
+import db from '../../lib/prisma';
+import { AuthUtils } from '../../utils/authutils';
 
 interface CreateUserRequest {
   fullName: string;
@@ -30,13 +30,7 @@ class CreateUserService {
       },
     });
 
-    const acessToken = await jwt.sign(
-      { userId: user.id },
-      process.env.ACCESS_TOKEN_SECRET!,
-      {
-        expiresIn: '72h',
-      },
-    );
+    const acessToken = AuthUtils.generateAccessToken(user.id);
 
     return {
       error: false,

@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import jwt from 'jsonwebtoken';
-import db from '../lib/prisma';
+import db from '../../lib/prisma';
 
 export async function authenticateToken(
   request: FastifyRequest,
