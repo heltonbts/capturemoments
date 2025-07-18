@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import { CreateUserController } from './controller/auth/CreateUserController';
 import { LoginUserController } from './controller/auth/LoginUserController';
 import { GetUsersController } from './controller/auth/GetUsersController';
-import { authenticateToken } from './services/auth/GetUsersService';
+import { authenticateToken } from './middlewares/authenticateToken';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
