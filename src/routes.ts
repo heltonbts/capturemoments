@@ -7,6 +7,7 @@ import { CreateRegisterMomentController } from './controller/moment/AddRegisterM
 import { getAllRegisterController } from './controller/moment/getAllRegisterController';
 import { SearchMomentsController } from './controller/moment/SearchMomentsController';
 import { EditMomentController } from './controller/moment/EditMomentController';
+import { GeminiController } from './controller/ia/GeminiController';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
@@ -56,6 +57,10 @@ function routes(fastify: FastifyInstance) {
       return new EditMomentController().handle(request, reply);
     },
   );
+
+  fastify.post('/ia', async (request: FastifyRequest, reply: FastifyReply) => {
+    return new GeminiController().handle(request, reply);
+  });
 }
 
 export default routes;

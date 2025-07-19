@@ -9,7 +9,7 @@ const ai = new GoogleGenAI({
 
 async function run() {
   const response = await ai.models.generateContent({
-    model: 'gemini-1.5-flash', // ou 'gemini-1.5-pro' se quiser mais precisão
+    model: 'gemini-1.5-flash',
     contents: 'Me explique resumidamente o que é REST API com um exemplo.',
   });
 
