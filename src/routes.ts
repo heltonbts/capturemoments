@@ -8,6 +8,8 @@ import { getAllRegisterController } from './controller/moment/getAllRegisterCont
 import { SearchMomentsController } from './controller/moment/SearchMomentsController';
 import { EditMomentController } from './controller/moment/EditMomentController';
 import { GeminiController } from './controller/ia/GeminiController';
+import { UpdatePhotoController } from './controller/moment/UpdatePhotoController';
+import { upload } from './config/multer';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
@@ -61,6 +63,14 @@ function routes(fastify: FastifyInstance) {
   fastify.post('/ia', async (request: FastifyRequest, reply: FastifyReply) => {
     return new GeminiController().handle(request, reply);
   });
+
+  fastify.post(
+    '/image-upload',
+    { preHandler: upload.single('image') },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new UpdatePhotoController().handle(request, reply);
+    },
+  );
 }
 
 export default routes;
