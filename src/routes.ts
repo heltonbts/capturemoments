@@ -6,6 +6,7 @@ import { authenticateToken } from './middlewares/authenticateToken';
 import { CreateRegisterMomentController } from './controller/AddRegisterMomentController';
 import { getAllRegisterController } from './controller/getAllRegisterController';
 import { SearchMomentsController } from './controller/auth/SearchMomentsController';
+import { EditMomentController } from './controller/EditMomentController';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
@@ -45,6 +46,14 @@ function routes(fastify: FastifyInstance) {
     { preHandler: authenticateToken },
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new SearchMomentsController().handle(request, reply);
+    },
+  );
+
+  fastify.put(
+    '/edit-moments/:id',
+    { preHandler: authenticateToken },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new EditMomentController().handle(request, reply);
     },
   );
 }
