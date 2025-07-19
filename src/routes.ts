@@ -3,10 +3,10 @@ import { CreateUserController } from './controller/auth/CreateUserController';
 import { LoginUserController } from './controller/auth/LoginUserController';
 import { GetUsersController } from './controller/auth/GetUsersController';
 import { authenticateToken } from './middlewares/authenticateToken';
-import { CreateRegisterMomentController } from './controller/AddRegisterMomentController';
-import { getAllRegisterController } from './controller/getAllRegisterController';
-import { SearchMomentsController } from './controller/auth/SearchMomentsController';
-import { EditMomentController } from './controller/EditMomentController';
+import { CreateRegisterMomentController } from './controller/moment/AddRegisterMomentController';
+import { getAllRegisterController } from './controller/moment/getAllRegisterController';
+import { SearchMomentsController } from './controller/moment/SearchMomentsController';
+import { EditMomentController } from './controller/moment/EditMomentController';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {

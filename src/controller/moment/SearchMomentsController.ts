@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { SearchMomentsService } from '../../services/SearchMomentsService';
+import { SearchMomentsService } from '../../services/moment/SearchMomentsService';
 
 class SearchMomentsController {
   async handle(request: FastifyRequest, reply: FastifyReply) {

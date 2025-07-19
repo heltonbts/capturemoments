@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { GetAllRegisterService } from '../services/getAllRegisterService';
+import { GetAllRegisterService } from '../../services/moment/getAllRegisterService';
 
 class getAllRegisterController {
   async handle(request: FastifyRequest, reply: FastifyReply) {

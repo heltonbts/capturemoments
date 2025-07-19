@@ -1,5 +1,5 @@
-import { RegisterRequest } from '../@types/RegisterRequest';
-import db from '../lib/prisma';
+import { RegisterRequest } from '../../@types/RegisterRequest';
+import db from '../../lib/prisma';
 
 class CreateRegisterMomentService {
   async execute({

@@ -1,13 +1,13 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { RegisterRequest } from '../@types/RegisterRequest';
-import { EditMomentService } from '../services/EditMomentService';
+import { RegisterRequest } from '../../@types/RegisterRequest';
+import { CreateRegisterMomentService } from '../../services/moment/CreateRegisterMomentsService';
 
-class EditMomentController {
+class CreateRegisterMomentController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
-    const { id } = request.params as { id: string };
-    const { user } = request;
     const { title, story, visitedLocation, imageUrl, visitedDate } =
       request.body as RegisterRequest;
+
+    const { user } = request;
 
     if (!title || !story || !visitedLocation || !imageUrl || !visitedDate) {
       return reply.status(400).send({
@@ -22,26 +22,30 @@ class EditMomentController {
         message: 'Usuário não autenticado',
       });
     }
+
     try {
-      const editMomentService = new EditMomentService();
-      const result = await editMomentService.execute({
-        id,
-        imageUrl,
-        story,
+      const createRegisterMoment = new CreateRegisterMomentService();
+
+      const result = await createRegisterMoment.execute({
         title,
-        user,
-        visitedDate,
+        story,
         visitedLocation,
+        imageUrl,
+        visitedDate,
+        user,
       });
 
-      return reply.send({ result }).status(200);
+      return reply.status(200).send({
+        result,
+        message: 'registro adicionado com sucesso',
+      });
     } catch (error: any) {
       return reply.status(400).send({
-        error: true,
+        error: false,
         message: error.message,
       });
     }
   }
 }
 
-export { EditMomentController };
+export { CreateRegisterMomentController };
