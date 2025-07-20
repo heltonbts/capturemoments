@@ -10,6 +10,7 @@ import { EditMomentController } from './controller/moment/EditMomentController';
 import { GeminiController } from './controller/ia/GeminiController';
 import { UpdatePhotoController } from './controller/moment/UpdatePhotoController';
 import { upload } from './config/multer';
+import { DeleteMomentsController } from './controller/moment/DeleteMoments';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
@@ -69,6 +70,13 @@ function routes(fastify: FastifyInstance) {
     { preHandler: upload.single('image') },
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new UpdatePhotoController().handle(request, reply);
+    },
+  );
+  fastify.delete(
+    '/delete-photo',
+    { preHandler: upload.single('image') },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new DeleteMomentsController().handle(request, reply);
     },
   );
 }
