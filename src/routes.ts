@@ -13,6 +13,7 @@ import { upload } from './config/multer';
 import { DeleteMomentsController } from './controller/moment/DeleteMoments';
 import { RemoveMomentController } from './controller/moment/RemoveMoments';
 import { UpdateFavoriteController } from './controller/moment/updateFavoriteController';
+import { FilterRegisterController } from './controller/moment/FilterRegisterController';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {
@@ -93,6 +94,14 @@ function routes(fastify: FastifyInstance) {
     { preHandler: authenticateToken },
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new UpdateFavoriteController().handle(request, reply);
+    },
+  );
+
+  fastify.get(
+    '/get-allmoments/filter',
+    { preHandler: authenticateToken },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new FilterRegisterController().handle(request, reply);
     },
   );
 }
