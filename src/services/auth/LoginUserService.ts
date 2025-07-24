@@ -24,7 +24,7 @@ class LoginUserService {
       throw new Error('Senha incorreta');
     }
 
-    const acessToken = AuthUtils.generateAccessToken(user.id);
+    const accessToken = AuthUtils.generateAccessToken(user.id);
 
     return {
       error: false,
@@ -32,7 +32,7 @@ class LoginUserService {
         fullName: user.fullName,
         email: user.email,
       },
-      acessToken,
+      accessToken,
       message: 'Login realizado com sucesso',
     };
   }
