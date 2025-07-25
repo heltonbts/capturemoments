@@ -30,7 +30,7 @@ class CreateUserService {
       },
     });
 
-    const acessToken = AuthUtils.generateAccessToken(user.id);
+    const accessToken = AuthUtils.generateAccessToken(user.id);
 
     return {
       error: false,
@@ -38,7 +38,7 @@ class CreateUserService {
         fullName: user.fullName,
         email: user.email,
       },
-      acessToken,
+      accessToken,
       message: 'registrado com sucesso',
     };
   }
