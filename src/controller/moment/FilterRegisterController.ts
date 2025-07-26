@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import db from '../../lib/prisma';
+import db from '../../lib/prisma.js';
 
 class FilterRegisterController {
   async handle(request: FastifyRequest, reply: FastifyReply) {

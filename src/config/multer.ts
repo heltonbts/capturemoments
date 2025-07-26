@@ -1,6 +1,6 @@
 import { FastifyRequest } from 'fastify';
 import multer from 'fastify-multer';
-import { File, FileFilterCallback } from 'fastify-multer/lib/interfaces';
+import { File, FileFilterCallback } from 'fastify-multer/lib/interfaces.js';
 import path from 'path';
 
 const storage = multer.diskStorage({

@@ -1,4 +1,4 @@
-import db from '../../lib/prisma';
+import db from '../../lib/prisma.js';
 
 interface EditMomentProps {
   id: string;

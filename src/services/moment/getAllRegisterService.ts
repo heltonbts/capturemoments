@@ -1,4 +1,4 @@
-import db from '../../lib/prisma';
+import db from '../../lib/prisma.js';
 
 class GetAllRegisterService {
   async execute(user: { userId: string }) {

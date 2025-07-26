@@ -1,6 +1,6 @@
 import { hashSync } from 'bcrypt-ts';
-import db from '../../lib/prisma';
-import { AuthUtils } from '../../utils/authutils';
+import db from '../../lib/prisma.js';
+import { AuthUtils } from '../../utils/authutils.js';
 
 interface CreateUserRequest {
   fullName: string;

@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { RegisterRequest } from '../../@types/RegisterRequest';
-import { EditMomentService } from '../../services/moment/EditMomentService';
+import { RegisterRequest } from '../../@types/RegisterRequest.js';
+import { EditMomentService } from '../../services/moment/EditMomentService.js';
 
 class EditMomentController {
   async handle(request: FastifyRequest, reply: FastifyReply) {

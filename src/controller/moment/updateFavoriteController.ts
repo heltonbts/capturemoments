@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { UpdateFavoriteSerice } from '../../services/moment/UpdateFavoriteService';
+import { UpdateFavoriteSerice } from '../../services/moment/UpdateFavoriteService.js';
 
 class UpdateFavoriteController {
   async handle(request: FastifyRequest, reply: FastifyReply) {

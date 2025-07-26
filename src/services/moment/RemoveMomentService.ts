@@ -1,4 +1,4 @@
-import db from '../../lib/prisma';
+import db from '../../lib/prisma.js';
 import path from 'path';
 import fs from 'fs';
 

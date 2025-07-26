@@ -1,19 +1,19 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import { CreateUserController } from './controller/auth/CreateUserController';
-import { LoginUserController } from './controller/auth/LoginUserController';
-import { GetUsersController } from './controller/auth/GetUsersController';
-import { authenticateToken } from './middlewares/authenticateToken';
-import { CreateRegisterMomentController } from './controller/moment/AddRegisterMomentController';
-import { getAllRegisterController } from './controller/moment/getAllRegisterController';
-import { SearchMomentsController } from './controller/moment/SearchMomentsController';
-import { EditMomentController } from './controller/moment/EditMomentController';
-import { GeminiController } from './controller/ia/GeminiController';
-import { UpdatePhotoController } from './controller/moment/UpdatePhotoController';
-import { upload } from './config/multer';
-import { DeleteMomentsController } from './controller/moment/DeleteMoments';
-import { RemoveMomentController } from './controller/moment/RemoveMoments';
-import { UpdateFavoriteController } from './controller/moment/updateFavoriteController';
-import { FilterRegisterController } from './controller/moment/FilterRegisterController';
+import { CreateUserController } from './controller/auth/CreateUserController.js';
+import { LoginUserController } from './controller/auth/LoginUserController.js';
+import { GetUsersController } from './controller/auth/GetUsersController.js';
+import { authenticateToken } from './middlewares/authenticateToken.js';
+import { CreateRegisterMomentController } from './controller/moment/AddRegisterMomentController.js';
+import { getAllRegisterController } from './controller/moment/getAllRegisterController.js';
+import { SearchMomentsController } from './controller/moment/SearchMomentsController.js';
+import { EditMomentController } from './controller/moment/EditMomentController.js';
+import { GeminiController } from './controller/ia/GeminiController.js';
+import { UpdatePhotoController } from './controller/moment/UpdatePhotoController.js';
+import { upload } from './config/multer.js';
+import { DeleteMomentsController } from './controller/moment/DeleteMoments.js';
+import { RemoveMomentController } from './controller/moment/RemoveMoments.js';
+import { UpdateFavoriteController } from './controller/moment/updateFavoriteController.js';
+import { FilterRegisterController } from './controller/moment/FilterRegisterController.js';
 
 function routes(fastify: FastifyInstance) {
   fastify.post('/create-account', async (request, reply) => {

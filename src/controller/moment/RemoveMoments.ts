@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { RemoveMomentService } from '../../services/moment/RemoveMomentService';
+import { RemoveMomentService } from '../../services/moment/RemoveMomentService.js';
 
 class RemoveMomentController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
