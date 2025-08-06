@@ -9,6 +9,12 @@ class GeminiController {
       apiKey: process.env.GEMINI_API_KEY,
     });
 
+    if (!process.env.GEMINI_API_KEY) {
+      return reply.status(500).send({
+        error: 'API key da IA não configurada',
+      });
+    }
+
     if (!body?.promt) {
       return reply.status(400).send({
         error: 'o campo é obrigatório',
@@ -16,7 +22,7 @@ class GeminiController {
     }
     try {
       const result = await ai.models.generateContent({
-        model: 'gemini-1.5-flash',
+        model: 'gemini-2.0-flash-lite',
         contents: `Você é uma inteligência artificial do aplicativo Captures Moments. Sua única função é melhorar a escrita da frase a seguir, deixando-a mais bonita, envolvente ou emocionante — sem mudar o sentido original. A frase é sobre uma lembrança de viagem.
     Importante:
     Não adicione comentários, sugestões ou explicações.
@@ -31,10 +37,10 @@ class GeminiController {
         response: text,
       });
     } catch (error) {
-      reply.send({
-        error,
+      console.error('Erro ao conectar com a IA:', error);
+      return reply.status(500).send({
+        error: 'Erro ao conectar com a inteligência artificial',
       });
-      throw new Error('Error ao conectar com a inteligência artificial');
     }
   }
 }
